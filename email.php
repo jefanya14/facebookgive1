@@ -1,3 +1,3 @@
 <?php
-$pulberaja = 'shillpzteam@gmail.com'; 
+$emailku = 'ISIEMAILKAMU'; 
 ?>
